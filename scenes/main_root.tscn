@@ -1,0 +1,177 @@
+[gd_scene load_steps=6 format=3 uid="uid://1526acn814kf"]
+
+[ext_resource type="StyleBox" uid="uid://3wcawns0tqv2" path="res://resources/base_style_box.tres" id="1_q06i0"]
+[ext_resource type="Script" uid="uid://btdwmxvwbomtx" path="res://scripts/main.gd" id="1_tu3ok"]
+[ext_resource type="Theme" uid="uid://clifdpdga067p" path="res://resources/base_theme.tres" id="2_tu3ok"]
+[ext_resource type="Script" uid="uid://s4b3irio28ig" path="res://scripts/title_bar.gd" id="3_mfnvp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tu3ok"]
+bg_color = Color(0.168627, 0.176471, 0.192157, 1)
+
+[node name="Main_Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tu3ok")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_q06i0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title_Bar" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tu3ok")
+script = ExtResource("3_mfnvp")
+
+[node name="aux_buttons" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Title_Bar"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Title_Bar/aux_buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Manual E2EE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Minimise" type="Button" parent="PanelContainer/VBoxContainer/Title_Bar/aux_buttons"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_tu3ok")
+text = "—"
+
+[node name="FullScreen" type="Button" parent="PanelContainer/VBoxContainer/Title_Bar/aux_buttons"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_tu3ok")
+text = "🗖"
+
+[node name="Exit" type="Button" parent="PanelContainer/VBoxContainer/Title_Bar/aux_buttons"]
+custom_minimum_size = Vector2(50, 25)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_tu3ok")
+text = "X"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Info" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="PanelContainer/VBoxContainer/HBoxContainer/Info"]
+layout_mode = 2
+
+[node name="GetPublicKey" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/Info"]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+tooltip_text = "Your public key is what other users use to encrypt messages only you can access
+You need to share this key for others to send you encrypted messages
+This is safe to share"
+theme_override_font_sizes/font_size = 30
+text = " Download my Public Key"
+
+[node name="LoadRecipientKey" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/Info"]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+tooltip_text = "Load the encryption key of you intended recipient
+Only the intended recipient will be able to decrypt the resulting message"
+theme_override_font_sizes/font_size = 30
+text = "Load Recipient's Key"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/HBoxContainer/Info"]
+layout_mode = 2
+
+[node name="CopyEncoded" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/Info"]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+tooltip_text = "Click to copy your encrypted message
+Your message will be encrypted using the recipient's public key you provide above"
+theme_override_font_sizes/font_size = 30
+text = " Copy Encrypted Message"
+
+[node name="DecodeCopied" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer/Info"]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+tooltip_text = "Click to copy your encrypted message
+Your message will be encrypted using the recipient's public key you provide above"
+theme_override_font_sizes/font_size = 30
+text = "Decrypt Copied Message"
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer/HBoxContainer/Info"]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_tu3ok")
+tab_alignment = 1
+current_tab = 0
+
+[node name="Outgoing_Message" type="TextEdit" parent="PanelContainer/VBoxContainer/HBoxContainer/TabContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme = ExtResource("2_tu3ok")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Your message here"
+wrap_mode = 1
+caret_blink = true
+caret_blink_interval = 0.5
+caret_multiple = false
+metadata/_tab_index = 0
+
+[node name="Incoming_Message" type="TextEdit" parent="PanelContainer/VBoxContainer/HBoxContainer/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme = ExtResource("2_tu3ok")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Incoming message will appear here when you click:
+[ Decrypt Copied Message ]"
+editable = false
+wrap_mode = 1
+metadata/_tab_index = 1
+
+[node name="Hide" type="TextEdit" parent="PanelContainer/VBoxContainer/HBoxContainer/TabContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+theme = ExtResource("2_tu3ok")
+theme_override_font_sizes/font_size = 20
+editable = false
+wrap_mode = 1
+metadata/_tab_index = 2
+
+[node name="Base" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+alignment = 1
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Title_Bar/aux_buttons/Minimise" to="PanelContainer/VBoxContainer/Title_Bar" method="_on_minimise_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Title_Bar/aux_buttons/FullScreen" to="PanelContainer/VBoxContainer/Title_Bar" method="_on_full_screen_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Title_Bar/aux_buttons/Exit" to="PanelContainer/VBoxContainer/Title_Bar" method="_on_exit_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Info/GetPublicKey" to="." method="_on_get_public_key_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Info/LoadRecipientKey" to="." method="_on_load_recipient_key_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Info/CopyEncoded" to="." method="_on_copy_encrypted_message_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Info/DecodeCopied" to="." method="_on_decode_copied_pressed"]
