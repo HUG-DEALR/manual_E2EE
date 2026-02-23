@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://1526acn814kf"]
+[gd_scene load_steps=7 format=3 uid="uid://1526acn814kf"]
 
 [ext_resource type="StyleBox" uid="uid://3wcawns0tqv2" path="res://resources/base_style_box.tres" id="1_q06i0"]
 [ext_resource type="Script" uid="uid://btdwmxvwbomtx" path="res://scripts/main.gd" id="1_tu3ok"]
 [ext_resource type="Theme" uid="uid://clifdpdga067p" path="res://resources/base_theme.tres" id="2_tu3ok"]
 [ext_resource type="Script" uid="uid://s4b3irio28ig" path="res://scripts/title_bar.gd" id="3_mfnvp"]
+[ext_resource type="Texture2D" uid="uid://drek5tixs8cd8" path="res://icon.svg" id="4_0kgef"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tu3ok"]
 bg_color = Color(0.168627, 0.176471, 0.192157, 1)
@@ -32,6 +33,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Title_Bar" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tu3ok")
 script = ExtResource("3_mfnvp")
@@ -40,6 +42,12 @@ script = ExtResource("3_mfnvp")
 layout_mode = 2
 theme_override_constants/separation = 5
 alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/Title_Bar/aux_buttons"]
+layout_mode = 2
+texture = ExtResource("4_0kgef")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Title_Bar/aux_buttons"]
 layout_mode = 2

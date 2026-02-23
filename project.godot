@@ -13,7 +13,8 @@ config_version=5
 config/name="Manual_E2EE"
 run/main_scene="uid://1526acn814kf"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+run/low_processor_mode=true
+config/icon="uid://drek5tixs8cd8"
 
 [display]
 
